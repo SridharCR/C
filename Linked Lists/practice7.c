@@ -13,13 +13,13 @@ static void reverse(struct Node** head_ref)
 {
     struct Node* prev   = NULL;
     struct Node* current = *head_ref;
-    struct Node* next;
+    struct Node* nexx;
     while (current != NULL)
     {
-        next  = current->next;
+        nexx  = current->next;
         current->next = prev;
         prev = current;
-        current = next;
+        current = nexx;
     }
     *head_ref = prev;
 }
