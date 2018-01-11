@@ -1,2 +1,4 @@
-int s;
-s = 20 + 25;
+int func ()
+{
+     return a;
+}
