@@ -6,7 +6,7 @@
 #include<stdlib.h>
 struct node
 {
-     int data;
+     char data;
      struct node* next;
 }*head = NULL,*newnode,*temp,*del;
 void create()
@@ -30,12 +30,11 @@ void printStack()
 {
      temp = head;
      while(temp!= NULL){
-          printf("%d   ",temp -> data);
-          printf("%p  \n",temp -> next );
+          printf("%c  ",temp -> data);
           temp = temp -> next;
      }
 }
-void pop()
+int pop()
 {
      if(head == NULL)
      {
@@ -44,20 +43,83 @@ void pop()
      }
      del = head;
      head = head -> next;
-     free(del);
+     return del -> data;
+
+}
+int peek()
+{
+     if(head == NULL)
+     {
+          printf("The Stack is empty\n");
+          return;
+     }
+     del = head;
+     //head = head -> next;
+     return del -> data;
+}
+int precedence_ip(char c)
+{
+     switch (c) {
+          case '+':
+               return 1;
+          case '-' :
+               return 1;
+          case '*':
+               return 3;
+          case '/' :
+               return 3;
+          case '%':
+               return 3;
+          case '^':
+               return 6;
+          case '$':
+               return 6;
+          case '(':
+               return 9;
+          case ')':
+               return 0;
+          default:
+               return 8;
+     }
+}
+int precedence_st(char s)
+{
+     switch(s)
+     {
+          case '+':
+               return 2;
+          case '-':
+               return 2;
+          case '*':
+               return 4;
+          case '/':
+               return 4;
+          case '%':
+               return 4;
+          case '^':
+               return 5;
+          case '$':
+               return 5;
+     }
+}
+void infix_to_postfix()
+{
+     char output[20],sr;
+     int i,j=0;
+     push('#');
+     for(i = 0;i!='\0';i++)
+     {
+          sr = output[i];
+          while(precedence_st(peek()) > precedence_ip(sr))
+               output[j++] = pop();
+          if()
+     }
 
 }
 int main(int argc, char const *argv[]) {
-     printf("Stack\n");
-     push(5);
-     push(6);
-     push(1);
-     push(3);
-     push(8);
-     printStack();
-     pop();
-     pop();
-     pop();
-     printStack();
+     char input[20];
+     printf("Enter the expression: ");
+     gets(input);
+     infix_to_postfix(input);
      return 0;
 }
