@@ -4,6 +4,7 @@
  */
 #include<stdio.h>
 #include<stdlib.h>
+#include <string.h>
 struct node
 {
      char data;
@@ -34,7 +35,7 @@ void printStack()
           temp = temp -> next;
      }
 }
-int pop()
+void pop()
 {
      if(head == NULL)
      {
@@ -43,18 +44,18 @@ int pop()
      }
      del = head;
      head = head -> next;
-     return del -> data;
+     free(del);
 
 }
-int peek()
+char peek()
 {
      if(head == NULL)
      {
           printf("The Stack is empty\n");
-          return;
+          return ' ';
      }
      del = head;
-     //head = head -> next;
+     head = head -> next;
      return del -> data;
 }
 int precedence_ip(char c)
@@ -102,24 +103,35 @@ int precedence_st(char s)
                return 5;
      }
 }
-void infix_to_postfix()
+void infix_to_postfix(char input[20])
 {
      char output[20],sr;
      int i,j=0;
      push('#');
      for(i = 0;i!='\0';i++)
      {
-          sr = output[i];
+          sr = input[i];
           while(precedence_st(peek()) > precedence_ip(sr))
-               output[j++] = pop();
-          if()
+               output[j++] = peek();
+          if(precedence_st(peek()) != precedence_ip(sr))
+               push(sr);
+          else
+               pop();
+          temp = head;
+          while(temp != NULL)
+          {
+               output[j++] = peek();
+          }
+          output[j] = '\0';
+          for(i = 0;i<j;i++)
+          printf("%c\n", output[i]);
      }
 
 }
 int main(int argc, char const *argv[]) {
      char input[20];
      printf("Enter the expression: ");
-     gets(input);
-     infix_to_postfix(input);
+     //gets(input);
+     infix_to_postfix("a+b");
      return 0;
 }
