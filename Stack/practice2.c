@@ -51,11 +51,11 @@ char peek()
 {
      if(head == NULL)
      {
-          printf("The Stack is empty\n");
-          return ' ';
+          printf("The Stack is empty peek\n");
+          return '#';
      }
      del = head;
-     head = head -> next;
+     //head = head -> next;
      return del -> data;
 }
 int precedence_ip(char c)
@@ -101,37 +101,55 @@ int precedence_st(char s)
                return 5;
           case '$':
                return 5;
+          case '(':
+               return 0;
+          case '#':
+               return -1;
+          default:
+               return 8;
      }
 }
 void infix_to_postfix(char input[20])
 {
      char output[20],sr;
-     int i,j=0;
+     int i,j=0,k=0;
      push('#');
-     for(i = 0;i!='\0';i++)
+     for(i = 0 ; input[i] != 0 ; i++)
      {
           sr = input[i];
           while(precedence_st(peek()) > precedence_ip(sr))
-               output[j++] = peek();
-          if(precedence_st(peek()) != precedence_ip(sr))
-               push(sr);
-          else
-               pop();
-          temp = head;
-          while(temp != NULL)
           {
                output[j++] = peek();
+               pop();
           }
-          output[j] = '\0';
-          for(i = 0;i<j;i++)
-          printf("%c\n", output[i]);
+          if(precedence_st(peek()) != precedence_ip(sr))
+          {
+               push(sr);
+          }
+          else
+          {
+               pop();
+          }
+          
      }
-
+     temp = head;
+     for(k = 0 ; temp ->  next != NULL ;temp = temp -> next)
+     {
+          output[j++] = temp -> data;
+     }
+     output[j++] = '\0';
+     printf("Postfix expression :" );
+     for(i = 0; output[i] != '\0' ; i++)
+     {
+          printf("%c",output[i] );
+     }
+     printf("\n" );
 }
 int main(int argc, char const *argv[]) {
      char input[20];
      printf("Enter the expression: ");
-     //gets(input);
-     infix_to_postfix("a+b");
+     gets(input);
+     infix_to_postfix(input);
+
      return 0;
 }
