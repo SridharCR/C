@@ -130,7 +130,7 @@ void infix_to_postfix(char input[20])
           {
                pop();
           }
-          
+
      }
      temp = head;
      for(k = 0 ; temp ->  next != NULL ;temp = temp -> next)
@@ -150,6 +150,5 @@ int main(int argc, char const *argv[]) {
      printf("Enter the expression: ");
      gets(input);
      infix_to_postfix(input);
-
      return 0;
 }
