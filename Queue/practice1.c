@@ -44,7 +44,9 @@ void dequeue()
      }
      else
      {
+          temp = front;
           front = front -> next;
+          free(temp);
      }
 }
 int main(int argc, char const *argv[]) {
