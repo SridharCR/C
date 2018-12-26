@@ -29,9 +29,9 @@ void push(int in)
 void printStack()
 {
      temp = head;
-     while(temp!= NULL){
-          printf("%d   ",temp -> data);
-          printf("%p  \n",temp -> next );
+     while(temp != NULL){
+          printf("%d  \n ",temp -> data);
+          //printf("%p  \n",temp -> next );
           temp = temp -> next;
      }
 }
@@ -48,16 +48,30 @@ void pop()
 
 }
 int main(int argc, char const *argv[]) {
-     printf("Stack\n");
-     push(5);
-     push(6);
-     push(1);
-     push(3);
-     push(8);
-     printStack();
-     pop();
-     pop();
-     pop();
-     printStack();
+     int opra,sel;
+     printf("Sridhar\t\t15IT46\nStack Allocation Strategy\n");
+     while(1)
+     {
+     printf("\n1.Push into the stack\n2.Pop from the stack\n3.Display the stack\n4.Exit\n");
+     printf("Enter the operation :");
+     scanf("%d",&sel );
+     switch (sel) {
+          case 1:
+               printf("Enter the value:\t");
+               scanf("%d",&opra);
+               push(opra);
+               printStack();
+               break;
+          case 2:
+               pop();
+               printStack();
+               break;
+          case 3:
+               printStack();
+               break;
+          case 4:
+               exit(0);
+     }
+}
      return 0;
 }

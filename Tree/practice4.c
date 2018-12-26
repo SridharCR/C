@@ -49,8 +49,9 @@ void printGivenLevel(struct tree* root, int level)
 void printLevelOrder(struct tree* node)
 {
      int h = height(node);
+     printf("%d\n", h);
      int i;
-     for(i = 0;i <= h;i++)
+     for(i = 1;i <= h;i++)
           printGivenLevel(node, i);
 }
 
