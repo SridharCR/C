@@ -1,5 +1,5 @@
 /*
-** Linked List Insertions **
+** Linked List Insertions and Deletions **
 */
 #include<stdio.h>
 #include <stdlib.h>
